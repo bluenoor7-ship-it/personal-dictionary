@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Dictionary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="search-wrap">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search a word..."
+            aria-label="Search words"
+          />
+          <button id="searchButton" class="icon-button" aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <path d="M16 16L21 21"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="Dictionary filters">
+        <div class="filter-group" id="sourceFilters">
+          <button class="source-chip active" data-source="all">All</button>
+          <button class="source-chip" data-source="Naver">Naver</button>
+          <button class="source-chip" data-source="Oxford">Oxford</button>
+          <button class="source-chip" data-source="Urban Dictionary">Urban Dictionary</button>
+          <button class="source-chip" data-source="Thesaurus">Thesaurus</button>
+          <button class="source-chip" data-source="Forvo">Forvo</button>
+          <button class="source-chip" data-source="Lexipedia">Lexipedia</button>
+          <button class="source-chip" data-source="Google">Google</button>
+          <button class="source-chip" data-source="Reddit">Reddit</button>
+          <button class="source-chip" data-source="Wikipedia">Wikipedia</button>
+        </div>
+        <button id="addWordButton" class="primary-button">+ Add</button>
+      </section>
+
+      <main>
+        <div id="emptyState" class="empty-state hidden">
+          No words found. Try another keyword or add a new word.
+        </div>
+        <div id="wordList" class="word-grid" aria-live="polite"></div>
+      </main>
+    </div>
+
+    <div id="wordModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-backdrop" data-close="true"></div>
+      <div class="modal-panel">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add a word</h2>
+          <button class="close-button" id="closeModalButton" aria-label="Close">×</button>
+        </div>
+
+        <form id="wordForm">
+          <div class="form-grid">
+            <label>
+              Word
+              <input id="wordInput" name="word" type="text" required placeholder="e.g. resilience" />
+            </label>
+
+            <label>
+              Source
+              <select id="sourceInput" name="source">
+                <option value="Naver">Naver</option>
+                <option value="Oxford">Oxford</option>
+                <option value="Urban Dictionary">Urban Dictionary</option>
+                <option value="Thesaurus">Thesaurus</option>
+                <option value="Forvo">Forvo</option>
+                <option value="Lexipedia">Lexipedia</option>
+                <option value="Google">Google</option>
+                <option value="Reddit">Reddit</option>
+                <option value="Wikipedia">Wikipedia</option>
+              </select>
+            </label>
+
+            <label>
+              Category
+              <input id="categoryInput" name="category" type="text" placeholder="e.g. common, business" />
+            </label>
+
+            <label class="full-span">
+              Tags
+              <input id="tagsInput" name="tags" type="text" placeholder="comma separated tags (e.g. noun, advanced)" />
+            </label>
+
+            <label class="full-span">
+              Meaning
+              <textarea id="meaningInput" name="meaning" rows="4" required placeholder="Write the meaning or explanation..."></textarea>
+            </label>
+
+            <label class="full-span">
+              Example
+              <textarea id="exampleInput" name="example" rows="2" placeholder="Optional example sentence"></textarea>
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="secondary-button" id="lookupButton">Lookup</button>
+            <button type="submit" class="primary-button">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
